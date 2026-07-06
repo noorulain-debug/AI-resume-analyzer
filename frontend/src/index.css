@@ -1,0 +1,371 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-page:      #0d1117;
+  --bg-card:      #161b22;
+  --bg-input:     #21262d;
+  --border:       #30363d;
+  --border-focus: #1D9E75;
+  --text-main:    #e6edf3;
+  --text-muted:   #8b949e;
+  --text-dim:     #484f58;
+  --teal:         #1D9E75;
+  --teal-dark:    #0F6E56;
+  --teal-glow:    rgba(29, 158, 117, 0.15);
+  --purple:       #534AB7;
+  --purple-dark:  #3C3489;
+  --purple-glow:  rgba(83, 74, 183, 0.15);
+  --score-high:   #4ade80;
+  --score-mid:    #fb923c;
+  --score-low:    #f87171;
+  --danger:       #f87171;
+  --danger-glow:  rgba(248, 113, 113, 0.1);
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Inputs ── */
+input,
+textarea,
+select {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-dim);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--teal-glow);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+select option {
+  background: var(--bg-input);
+}
+
+/* ── Buttons ── */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: white;
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+}
+
+.btn-ai {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--purple) 100%);
+  color: white;
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.btn-ai:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 8px 16px;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.btn-danger {
+  background: transparent;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: var(--danger);
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-glow);
+}
+
+/* ── Links ── */
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.card-sm {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* ── Error box ── */
+.error-box {
+  background: var(--danger-glow);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin: 3px;
+  font-weight: 500;
+}
+
+.badge-found {
+  background: var(--teal-glow);
+  color: var(--teal);
+  border: 1px solid rgba(29, 158, 117, 0.3);
+}
+
+.badge-missing {
+  background: var(--danger-glow);
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.badge-ai {
+  background: var(--purple-glow);
+  color: #9b91f5;
+  border: 1px solid rgba(83, 74, 183, 0.3);
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+/* ── Layout ── */
+.page-container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+/* ── Score colors ── */
+.score-high { color: var(--score-high); }
+.score-mid  { color: var(--score-mid); }
+.score-low  { color: var(--score-low); }
+
+/* ── Toggle buttons (text vs file) ── */
+.toggle-group {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  width: auto;
+}
+
+.toggle-btn.active {
+  background: var(--teal);
+  color: white;
+}
+
+.toggle-btn.inactive {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.toggle-btn.inactive:hover {
+  color: var(--text-main);
+  transform: none;
+}
+
+/* ── File drop zone ── */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+}
+
+.drop-zone:hover,
+.drop-zone.has-file {
+  border-color: var(--teal);
+  background: var(--teal-glow);
+  color: var(--teal);
+}
+
+/* ── Spinner ── */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Fade in animation ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.empty-state h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .page-container {
+    padding: 20px 14px;
+  }
+  .card {
+    padding: 16px;
+  }
+}
